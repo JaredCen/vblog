@@ -5,6 +5,11 @@
     "moduleResolution": "node",
     "target": "es5",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
+
+    // vue-class-component
+    "experimentalDecorators": true,
+    
+    // vuex-class
+    "strictFunctionTypes": false
   }
 }

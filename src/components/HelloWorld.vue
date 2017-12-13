@@ -2,17 +2,26 @@
   <div class="hello">
     <h1>{{ author }}</h1>
     <h1>{{ message }}</h1>
+    <h1>{{ example.msg }}</h1>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { State, Action } from 'vuex-class';
+import { State as ExampleState } from '../store/modules/example';
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop({ default: 'Junrey' })
   author: string;
   message: string = 'Hello vblog!';
+  @State('example') example: ExampleState;
+  @Action('add') add: Function;
+
+  mounted () {
+    this.add();
+  }
 }
 </script>
 
