@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <my-nav></my-nav>
+    <img src="./assets/images/logo.png">
     <router-view/>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-@Component
+import { Nav, Footer } from './components';
+@Component({
+  components: {
+    MyNav: Nav,
+    MyFooter: Footer
+  }
+})
 export default class App extends Vue {
   name: string = 'app';
 }
