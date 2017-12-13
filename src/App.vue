@@ -5,9 +5,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'app'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+@Component
+export default class App extends Vue {
+  name: string = 'app';
 }
 </script>
 

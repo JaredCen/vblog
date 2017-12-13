@@ -1,0 +1,11 @@
+{
+  "extends": "tslint-config-standard",
+  "globals": {
+    "require": true
+  },
+  "rules": {
+    // reason: https://github.com/palantir/tslint/issues/2099#issuecomment-293972671
+    "no-consecutive-blank-lines": false,
+    "semicolon": [true, "always"]
+  }
+}
