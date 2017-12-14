@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <my-nav></my-nav>
-    <img src="./assets/images/logo.png">
+    App
     <router-view/>
     <my-footer></my-footer>
   </div>
@@ -20,14 +20,3 @@ export default class App extends Vue {
   name: string = 'app';
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

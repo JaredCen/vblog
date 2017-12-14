@@ -11,7 +11,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, namespace } from 'vuex-class';
 
 @Component
-export default class HelloWorld extends Vue {
+export default class Demo extends Vue {
   @Prop({ default: 'Junrey' })
   author: string;
   message: string = 'Hello vblog!';
@@ -25,18 +25,5 @@ export default class HelloWorld extends Vue {
 </script>
 
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
