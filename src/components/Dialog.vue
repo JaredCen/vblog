@@ -1,19 +1,17 @@
 <template>
-  <div class="footer">
-    Footer
+  <div class="dialog">
+    Dialog
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import menus, { Menu } from '../config/nav';
+
 @Component
-export default class MyFooter extends Vue {
+export default class Dialog extends Vue {
 }
 </script>
 
 <style lang="less">
-.footer {
-  flex: 0 0 auto;
-  height: 100px;
-}
 </style>

@@ -24,6 +24,6 @@ export default class Demo extends Vue {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

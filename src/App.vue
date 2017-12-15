@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <my-nav></my-nav>
-    App
-    <router-view/>
-    <my-footer></my-footer>
+    <my-nav/>
+    <div class="main">
+      <router-view/>
+    </div>
+    <my-footer/>
   </div>
 </template>
 
@@ -20,3 +21,20 @@ export default class App extends Vue {
   name: string = 'app';
 }
 </script>
+
+<style lang="less">
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  .main {
+    display: flex;
+    flex: 1 1 auto;
+  }
+}
+</style>
+
