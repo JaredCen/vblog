@@ -1,7 +1,11 @@
-import Footer from './Footer.vue';
-import Nav from './Nav.vue';
+import Footer from './Footer';
+import Nav from './Nav';
+import Mask from './Mask';
+import Messagebox from './Messagebox';
 
 export {
   Footer,
-  Nav
+  Nav,
+  Messagebox,
+  Mask
 };

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex, { Commit, Dispatch } from 'vuex';
-import example from './modules/example';
+import demo from './modules/demo';
 
 Vue.use(Vuex);
 
@@ -13,7 +13,7 @@ export interface Action {
 
 export default new Vuex.Store({
   modules: {
-    example
+    demo
   },
   strict: debug
 });

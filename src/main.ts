@@ -7,6 +7,10 @@ import store from './store';
 
 import 'normalize.css';
 
+import MsgboxPlugin from './plugins/Messagebox';
+
+Vue.use(MsgboxPlugin);
+
 Vue.config.productionTip = false;
 
 /* tslint:disable no-unused-expression */

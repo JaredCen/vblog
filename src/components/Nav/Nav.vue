@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import menus, { Menu } from '../config/nav';
+import menus, { Menu } from '../../config/nav';
 
 @Component
 export default class MyNav extends Vue {
@@ -18,12 +18,7 @@ export default class MyNav extends Vue {
   }
 
   switched (menu: Menu): void {
-    if (menu.ask) {
-      // TODO Message
-      this.$router.push(menu.path);
-    } else {
-      this.$router.push(menu.path);
-    }
+    this.$router.push(menu.path);
   }
 }
 </script>

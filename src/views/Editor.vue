@@ -18,6 +18,9 @@
         />
       </div>
     </div>
+
+    <messagebox></messagebox>
+    <my-mask></my-mask>
   </div>
 </template>
 
@@ -29,8 +32,15 @@ import highlight from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import storage from '../utils/storage';
 
-@Component
-export default class Demo extends Vue {
+import { Messagebox, Mask } from '../components';
+
+@Component({
+  components: {
+    Messagebox,
+    MyMask: Mask
+  }
+})
+export default class Editor extends Vue {
   content: string = '';
 
   get markedOpts (): object {
@@ -50,9 +60,20 @@ export default class Demo extends Vue {
     storage.setItem('blogCtn', val);
   }
 
+  registerNavGuards (): void {
+    this.$router.beforeEach((to, from, next) => {
+      // TODO: message box
+      next();
+    });
+  }
+
   mounted () {
     const cacheCtn = storage.getItem('blogCtn');
     this.content = cacheCtn;
+
+    this.registerNavGuards();
+
+    this.$confirm();
   }
 }
 </script>
@@ -96,7 +117,7 @@ export default class Demo extends Vue {
     }
     .e-o-ctn {
       .mixin-content;
-      border: 1px solid #666;
+      border: 1px solid rgb(169, 169, 169);
     }
   }
 }

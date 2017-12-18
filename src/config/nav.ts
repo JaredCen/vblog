@@ -16,8 +16,7 @@ const menus: Menu[] = [{
 }, {
   label: '写博客',
   value: 'write',
-  path: 'Editor',
-  ask: true
+  path: 'Editor'
 }];
 
 export default menus;
