@@ -2,7 +2,6 @@ export interface Menu {
   label: string;
   value: string;
   path: string;
-  ask?: boolean;
 }
 
 const menus: Menu[] = [{
