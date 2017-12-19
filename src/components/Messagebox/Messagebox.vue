@@ -1,6 +1,6 @@
 <template>
   <transition name="message-box__fade">
-    <div class="message-box" @click.self="close">
+    <div class="message-box" @click.self="cancel">
       <div class="message-box__wrapper">
         <div class="message-box__hd">
           MessageboxHD
@@ -18,36 +18,51 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import MixinMask from '../Mask/Mask';
 
 @Component
 export default class Messagebox extends MixinMask {
+  // TODO: message, title, cb等
+  // @Prop()
+
+  @Prop({ default: null })
+  confirmCb: Function | null;
+
+  @Prop({ default: null })
+  cancelCb: Function | null;
+
+  @Prop({ default: null })
+  closeCb: Function | null;
+
   open (): void {
     this.doOpen();
   }
 
   close (): void {
-    this.$emit('Messagebox:close');
+    this.closeCb && this.closeCb();
     this.doClose();
     this.$destroy();
   }
 
   confirm (): void {
     console.log('confirm');
-    this.$emit('Messagebox:confirm');
+    this.confirmCb && this.confirmCb();
     this.close();
   }
 
   cancel (): void {
     console.log('cancel');
+    this.cancelCb && this.cancelCb();
     this.close();
   }
 
   handleKeyboard (e: KeyboardEvent): void {
     if (e.keyCode === 13) {
+      // keyboard: Enter
       this.confirm();
     } else if (e.keyCode === 27) {
+      // keyboard: ESC
       this.cancel();
     }
   }

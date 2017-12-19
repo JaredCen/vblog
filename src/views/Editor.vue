@@ -30,7 +30,7 @@ import { State, Action, namespace } from 'vuex-class';
 import marked from 'marked';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/github.css';
-import storage from '../utils/storage';
+import { storage } from '../utils';
 
 import { Messagebox, Mask } from '../components';
 
@@ -73,7 +73,13 @@ export default class Editor extends Vue {
 
     this.registerNavGuards();
 
-    this.$confirm();
+    this.$confirm()
+    .then((val: boolean) => {
+      console.log(val);
+    })
+    .catch((val: boolean) => {
+      console.log(val);
+    });
   }
 }
 </script>

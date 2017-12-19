@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import MsgboxVue from './';
+import extend, { Target } from '../../utils/extend';
 
 const MsgboxConstructor = Vue.extend(MsgboxVue);
 
@@ -9,42 +10,49 @@ interface Messagebox {
 
 class Msgbox implements Messagebox {
   private instance: any;
-  private opts: object;
-  constructor (opts?: object, callback?: Function) {
-    if (!this.instance) {
-      this.initInstance();
-    }
+  private opts: Target;
+  constructor (opts?: Target, callback?: Function) {
+    this.opts = opts || {};
   }
   public next () {
     return new Promise<boolean>((resolve, reject) => {
-      // TODO
-      this.instance.$on('Messagebox:confirm', () => {
-        resolve(true);
-      });
-      this.instance.$on('Messagebox:close', () => {
-        reject(false);
-      });
+      if (!this.instance) {
+        this.initInstance(resolve, reject);
+      }
     });
   }
-  private initInstance (): void {
-    this.instance = new MsgboxConstructor({
-      el: document.createElement('div')
-    });
-    this.instance.$on('Messagebox:close', () => {
+  private initInstance (resolve: Function, reject: Function): void {
+    const confirmCb = (): void => {
+      resolve(true);
+    };
+
+    const cancelCb = (): void => {
+      reject(false);
+    };
+
+    const closeCb = (): void => {
       this.instance.$el.parentNode.removeChild(this.instance.$el);
+    };
+
+    this.instance = new MsgboxConstructor({
+      el: document.createElement('div'),
+      propsData: extend(this.opts, {
+        confirmCb,
+        cancelCb,
+        closeCb
+      })
     });
+
     document.body.appendChild(this.instance.$el);
   }
 }
 
 const confirm = (opts: object): Promise<boolean> => {
-  console.log('confirm');
   const msgbox = new Msgbox();
   return msgbox.next();
 };
 
 const alert = (opts: object): Promise<boolean> => {
-  console.log('alert');
   const msgbox = new Msgbox();
   return msgbox.next();
 };
