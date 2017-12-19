@@ -1,8 +1,17 @@
 <template>
   <transition name="message-box__fade">
-    <div class="message-box" @click.self="doClose">
+    <div class="message-box" @click.self="close">
       <div class="message-box__wrapper">
-        Messagebox
+        <div class="message-box__hd">
+          MessageboxHD
+        </div>
+        <div class="message-box__bd">
+          MessageboxBD
+        </div>
+        <div class="message-box__btn">
+          <button @click.prevent="confirm">confirm</button>
+          <button @click.prevent="cancel">cancel</button>
+        </div>
       </div>
     </div>
   </transition>
@@ -10,18 +19,36 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import MixinMask from '../Mask/Mask';
 
 @Component
-export default class Messagebox extends Vue {
-  doClose (): void {
-    console.log('close');
+export default class Messagebox extends MixinMask {
+  open (): void {
+    this.doOpen();
+  }
+
+  close (): void {
+    this.$emit('Messagebox:close');
+    this.doClose();
+    this.$destroy();
+  }
+
+  confirm (): void {
+    console.log('confirm');
+    this.$emit('Messagebox:confirm');
+    this.close();
+  }
+
+  cancel (): void {
+    console.log('cancel');
+    this.close();
   }
 
   handleKeyboard (e: KeyboardEvent): void {
     if (e.keyCode === 13) {
-      console.log('enter');
+      this.confirm();
     } else if (e.keyCode === 27) {
-      console.log('esc');
+      this.cancel();
     }
   }
 
@@ -30,6 +57,7 @@ export default class Messagebox extends Vue {
   }
 
   mounted () {
+    this.open();
     window.addEventListener('keydown', this.handleKeyboard);
   }
 }

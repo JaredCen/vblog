@@ -19,8 +19,8 @@
       </div>
     </div>
 
-    <messagebox></messagebox>
-    <my-mask></my-mask>
+    <!-- <messagebox></messagebox>
+    <my-mask></my-mask> -->
   </div>
 </template>
 

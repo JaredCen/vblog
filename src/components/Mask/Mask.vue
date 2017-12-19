@@ -7,6 +7,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class MyMask extends Vue {
+
 }
 </script>
 
