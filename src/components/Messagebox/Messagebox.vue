@@ -69,6 +69,7 @@ export default class Messagebox extends MixinMask {
 
   beforeDestroy () {
     window.removeEventListener('keydown', this.handleKeyboard);
+    this.$el.parentNode && this.$el.parentNode.removeChild(this.$el);
   }
 
   mounted () {

@@ -7,7 +7,12 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class MyMask extends Vue {
-
+  destroy (): void {
+    this.$destroy();
+  }
+  beforeDestroy () {
+    this.$el.parentNode && this.$el.parentNode.removeChild(this.$el);
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@ export default class MixinMask extends Vue {
   }
   doClose (): void {
     if (this.instance) {
-      this.instance.$el.parentNode.removeChild(this.instance.$el);
+      this.instance.destroy();
       this.instance = null;
     }
   }

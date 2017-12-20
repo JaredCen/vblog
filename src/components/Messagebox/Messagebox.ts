@@ -9,7 +9,7 @@ interface Messagebox {
 }
 
 class Msgbox implements Messagebox {
-  private instance: any;
+  private instance: Vue;
   private opts: Target;
   constructor (opts?: Target, callback?: Function) {
     this.opts = opts || {};
@@ -30,16 +30,11 @@ class Msgbox implements Messagebox {
       reject(false);
     };
 
-    const closeCb = (): void => {
-      this.instance.$el.parentNode.removeChild(this.instance.$el);
-    };
-
     this.instance = new MsgboxConstructor({
       el: document.createElement('div'),
       propsData: extend(this.opts, {
         confirmCb,
-        cancelCb,
-        closeCb
+        cancelCb
       })
     });
 
