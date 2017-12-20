@@ -27,33 +27,33 @@ export default class Messagebox extends MixinMask {
   // @Prop()
 
   @Prop({ default: null })
-  confirmCb: Function | null;
+  onConfirm: Function | null;
 
   @Prop({ default: null })
-  cancelCb: Function | null;
+  onCancel: Function | null;
 
   @Prop({ default: null })
-  closeCb: Function | null;
+  onClose: Function | null;
 
   open (): void {
     this.doOpen();
   }
 
   close (): void {
-    this.closeCb && this.closeCb();
+    this.onClose && this.onClose();
     this.doClose();
     this.$destroy();
   }
 
   confirm (): void {
     console.log('confirm');
-    this.confirmCb && this.confirmCb();
+    this.onConfirm && this.onConfirm();
     this.close();
   }
 
   cancel (): void {
     console.log('cancel');
-    this.cancelCb && this.cancelCb();
+    this.onCancel && this.onCancel();
     this.close();
   }
 

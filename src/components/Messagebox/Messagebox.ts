@@ -22,19 +22,19 @@ class Msgbox implements Messagebox {
     });
   }
   private initInstance (resolve: Function, reject: Function): void {
-    const confirmCb = (): void => {
+    const onConfirm = (): void => {
       resolve(true);
     };
 
-    const cancelCb = (): void => {
+    const onCancel = (): void => {
       reject(false);
     };
 
     this.instance = new MsgboxConstructor({
       el: document.createElement('div'),
       propsData: extend(this.opts, {
-        confirmCb,
-        cancelCb
+        onConfirm,
+        onCancel
       })
     });
 
