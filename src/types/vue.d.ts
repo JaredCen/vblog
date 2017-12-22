@@ -7,6 +7,7 @@ declare module '*.vue' {
 declare module 'vue/types/vue' {
   interface Vue {
     $confirm: Function,
-    $alert: Function
+    $alert: Function,
+    $msgClose: Function
   }
 }

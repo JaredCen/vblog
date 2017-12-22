@@ -81,6 +81,10 @@ export default class Editor extends Vue {
       console.log(val);
     });
   }
+
+  beforeDestroy () {
+    this.$msgClose();
+  }
 }
 </script>
 

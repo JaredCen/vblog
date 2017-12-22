@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import MsgboxVue from './';
-import extend, { Target } from '../../utils/extend';
+import _extend, { Target } from '../../utils/extend';
 
 const MsgboxConstructor = Vue.extend(MsgboxVue);
 
 interface Messagebox {
   next (): Promise<boolean>;
+  close (): void;
 }
 
 class Msgbox implements Messagebox {
-  private instance: Vue;
+  private instance: any;
   private opts: Target;
   constructor (opts?: Target, callback?: Function) {
     this.opts = opts || {};
@@ -21,6 +22,11 @@ class Msgbox implements Messagebox {
       }
     });
   }
+  public close () {
+    if (this.instance) {
+      this.instance.close && this.instance.close();
+    }
+  }
   private initInstance (resolve: Function, reject: Function): void {
     const onConfirm = (): void => {
       resolve(true);
@@ -28,11 +34,12 @@ class Msgbox implements Messagebox {
 
     const onCancel = (): void => {
       reject(false);
+      instance = null;
     };
 
     this.instance = new MsgboxConstructor({
       el: document.createElement('div'),
-      propsData: extend(this.opts, {
+      propsData: _extend(this.opts, {
         onConfirm,
         onCancel
       })
@@ -42,17 +49,25 @@ class Msgbox implements Messagebox {
   }
 }
 
+let instance: Msgbox | null = null;
+
 const confirm = (opts: object): Promise<boolean> => {
-  const msgbox = new Msgbox();
-  return msgbox.next();
+  instance = new Msgbox();
+  return instance.next();
 };
 
 const alert = (opts: object): Promise<boolean> => {
-  const msgbox = new Msgbox();
-  return msgbox.next();
+  instance = new Msgbox();
+  return instance.next();
+};
+
+const close = (): void => {
+  instance && instance.close();
+  instance = null;
 };
 
 export {
   confirm,
-  alert
+  alert,
+  close
 };
