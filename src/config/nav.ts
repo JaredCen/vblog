@@ -11,11 +11,15 @@ const menus: Menu[] = [{
 }, {
   label: '作品',
   value: 'work',
-  path: 'work'
+  path: 'Works'
 }, {
   label: '写博客',
   value: 'write',
   path: 'Editor'
+}, {
+  label: '文章列表',
+  value: 'articles',
+  path: 'Articles'
 }];
 
 export default menus;

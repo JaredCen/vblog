@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { State, Action, namespace } from 'vuex-class';
+import { State, Action } from 'vuex-class';
 import marked from 'marked';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/github.css';
