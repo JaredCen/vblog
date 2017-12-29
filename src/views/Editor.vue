@@ -57,7 +57,7 @@ export default class Editor extends Vue {
 
   @Watch('content')
   onCtnChanged (val: string, oldVal: string) {
-    storage.setItem('blogCtn', val);
+    storage.setItem('blogCtn', val, 2 * 60 * 60 * 1000);
   }
 
   registerNavGuards (): void {
