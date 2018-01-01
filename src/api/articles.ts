@@ -1,10 +1,10 @@
 import Common from './common';
 
-interface Tag {
+export interface Tag {
   name: string;
   type: string;
 }
-interface Article {
+export interface Article {
   id: number;
   cover?: string;
   title: string;
@@ -31,6 +31,7 @@ const articles: Article[] = [{
 
 class Articles extends Common {
   static getArticles () {
+    // TODO：this.get(...)
     return articles;
   }
 }
