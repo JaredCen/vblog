@@ -32,6 +32,7 @@ const storage: StorageInterface = {
     if (typeof window.localStorage !== 'undefined') {
       const k = `${prefix}_${key}`;
       let v = localStorage.getItem(k) || '';
+      if (!v) return v;
       const val = JSON.parse(v);
       if (val.expires === -1 || new Date().getTime() < val.time + val.expires) {
         v = val.content;

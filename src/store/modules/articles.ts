@@ -4,30 +4,41 @@ import { articles as Api } from '../../api';
 import { Article } from '../../api/articles';
 
 export interface State {
-  articles: Article;
+  articles: Article[];
 }
+
+const state: State = {
+  articles: []
+};
+
+const getters = {
+  articles: (state: State) => state.articles
+};
 
 const actions = {
   getArticles (ctx: Action) {
-    setTimeout(() => {
-      const articles = Api.getArticles();
-      ctx.commit(types.GET_ARTICLES, articles);
-    }, 1000);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const articles = Api.getArticles();
+        ctx.commit(types.GET_ARTICLES, articles);
+      }, 1000);
+      resolve();
+    });
   }
 };
 
 const mutations = {
-  [types.GET_ARTICLES] (state: State, articles: Article) {
+  [types.GET_ARTICLES] (state: State, articles: Article[]) {
     state.articles = articles;
-    // TODO:
-    console.log(123, state);
   },
-  [types.GET_MORE_ARTICLES] (state: State, articles: Article) {
+  [types.GET_MORE_ARTICLES] (state: State, articles: Article[]) {
     // state.articles = articles;
   }
 };
 
 export default {
+  state,
+  getters,
   actions,
   mutations
 };

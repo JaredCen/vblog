@@ -9,5 +9,6 @@ declare module 'vue/types/vue' {
     $confirm: Function,
     $alert: Function,
     $msgClose: Function
+    $loading: Function,
   }
 }

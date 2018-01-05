@@ -23,6 +23,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="less">
+@import './assets/styles/var.less';
+
 #app {
   position: absolute;
   top: 0;
@@ -31,6 +33,7 @@ export default class App extends Vue {
   bottom: 0;
   display: flex;
   flex-direction: column;
+  background-color: @color-home-bg;
   .main {
     display: flex;
     flex: 1 1 auto;

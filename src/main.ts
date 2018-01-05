@@ -6,6 +6,7 @@ import router from './router';
 import store from './store';
 
 import 'normalize.css';
+import './assets/styles/style.less';
 
 import MsgboxPlugin from './plugins/Messagebox';
 
